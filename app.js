@@ -20,6 +20,7 @@ const cardSchema = new mongoose.Schema({
   Description: String,
   Title: String,
   audio: String,
+  image: String,
 });
 
 const userSchema = new mongoose.Schema({
@@ -91,7 +92,7 @@ app.get("/listen", (req, res) => {
           cno: user.Course,
           eno: user.Episode,
           title: userCourse.Title,
-          imagesrc: userCourse.image,
+          image: userCourse.image,
           desc: userCourse.Description,
           audiosrc: userCourse.audio,
         });

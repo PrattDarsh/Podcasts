@@ -18,7 +18,7 @@
         </p>
         <section class="max-w-6xl py-32 mx-auto">
             <div class="flex">
-                <div class="">
+                <div class="p-12">
                     <h1 class="text-6xl font-bold anton coloredText">
                         <%=title %>
                     </h1>
@@ -26,15 +26,23 @@
                             <%= cno %>
                         </span> Episode- <%= eno%>
                     </p>
-                    <p>
-                        <%= desc %>
-                    </p>
-                    <audio src="<%=audiosrc%>" controls>
+                    <div class="relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="absolute w-32 h-32 -left-12 -top-12 opacity-20"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M5.278 6.711c-.841 1.39-1.278 2.942-1.278 4.289v2h4v6h-6v-5.391c0-2.936 1.176-5.333 3.278-6.898zm13.993.011c-.836 1.386-1.271 2.934-1.271 4.278v2h4v6h-6v-5.391c0-2.93 1.184-5.322 3.271-6.887zm3.729-3.722c-5.252 1.039-8.983 4.905-8.983 10.609v7.391h9.983v-10h-4c0-2.211 1.562-4.932 3.995-5.849l-.995-2.151zm-14 0c-5.252 1.039-9 4.905-9 10.609v7.391h9.983v-10h-3.983c0-2.211 1.563-4.932 3.996-5.849l-.996-2.151z" />
+                        </svg>
+                        <p class="max-w-lg mt-8 text-lg">
+                            <%= desc %>
+                        </p>
+
+                    </div>
+                    <audio src="<%=audiosrc%>" controls class="w-full">
 
                     </audio>
                 </div>
                 <div class="">
-                    <img src="<%=imagesrc%>">
+                    <img src="<%=image%>" alt="">
                 </div>
             </div>
 
