@@ -63,7 +63,22 @@
             </div>
 
         </section>
+        <section class=" py-12 mx-auto md:py-32 flex space-x-4">
+            <div class="flex mx-auto space-x-4">
+                <form action="/listenprev" method="POST">
+                    <button type="submit" class="text-xl text-white border-2 px-12 py-4  rounded-full anton"
+                        id="prevbtn">
+                        Previous
+                    </button>
+                </form>
+                <form action="/listen" method="POST">
+                    <button type="submit" class="text-xl border w-40 py-4 rounded-full anton" id="nextbtn">
+                        Next
+                    </button>
+                </form>
+            </div>
 
+        </section>
 
 
         <script>
@@ -71,36 +86,50 @@
             var slate = document.getElementById('container')
             var userbox = document.getElementById("userbox")
             var coloredTexts = document.getElementsByClassName('coloredText')
-
+            var next = document.getElementById("nextbtn")
+            var prev = document.getElementById("prevbtn")
 
             if (courseno.textContent == 1) {
                 slate.classList.add('border-yellow-400')
                 userbox.classList.add('bg-yellow-100')
+                next.classList.add('border-yellow-400')
+                next.classList.add('text-yellow-400')
+                prev.classList.add('bg-yellow-400')
+                prev.classList.add('text-white')
                 for (var i = 0; i < coloredTexts.length; i++) {
                     coloredTexts[i].classList.add('text-yellow-400')
                 }
             } else if (courseno.textContent == 2) {
                 slate.classList.add('border-pink-400')
                 userbox.classList.add('bg-pink-200')
+                next.classList.add('border-pink-600')
+                next.classList.add('text-pink-600')
+                prev.classList.add('bg-pink-600')
+                prev.classList.add('text-white')
                 for (var i = 0; i < coloredTexts.length; i++) {
                     coloredTexts[i].classList.add('text-pink-600')
                 }
+
             } else if (courseno.textContent == 3) {
                 slate.classList.add('border-indigo-400')
                 userbox.classList.add('bg-indigo-200')
+                // next_btn.classList.add('border-indigo-400 text-indigo-600')
             } else if (courseno.textContent == 4) {
                 slate.classList.add('border-green-400')
                 userbox.classList.add('bg-green-200')
+                next_btn.classList.add('border-green-400 text-green-600')
             } else if (courseno.textContent == 5) {
                 slate.classList.add('border-blue-400')
                 userbox.classList.add('bg-blue-200')
+                // next_btn.classList.add('border-blue-400 text-blue-600')
             } else if (courseno.textContent == 6) {
                 slate.classList.add('border-red-400')
                 userbox.classList.add('bg-red-200')
+                next_btn.classList.add('border-red-400 text-red-600')
             }
             const likes = document.getElementById('likes');
             likes.addEventListener('click', function () {
-                // e.preventDefault()
+
                 document.getElementById('likebtn').classList.add('fill-current')
 
             })

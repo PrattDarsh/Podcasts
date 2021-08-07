@@ -103,6 +103,38 @@ app.get("/listen", (req, res) => {
   );
 });
 
+app.post("/listen", (req, res) => {
+  const curruser = app.get("user");
+  // console.log(curruser.Course++);
+  User.updateOne(
+    { _id: curruser },
+    { Episode: curruser.Episode++ },
+    function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(302).redirect("/listen");
+      }
+    }
+  );
+});
+
+app.post("/listenprev", (req, res) => {
+  const prevuser = app.get("user");
+  // console.log(curruser.Course++);
+  User.updateOne(
+    { _id: prevuser },
+    { Episode: prevuser.Episode-- },
+    function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(302).redirect("/listen");
+      }
+    }
+  );
+});
+
 app.post("/like", (req, res) => {
   const currCourse = app.get("currCourse");
   // console.log(currCourse);
