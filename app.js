@@ -21,6 +21,7 @@ const cardSchema = new mongoose.Schema({
   Title: String,
   audio: String,
   image: String,
+  likes: Number,
 });
 
 const userSchema = new mongoose.Schema({
@@ -96,6 +97,23 @@ app.get("/listen", (req, res) => {
           desc: userCourse.Description,
           audiosrc: userCourse.audio,
         });
+        app.set("currCourse", userCourse);
+      }
+    }
+  );
+});
+
+app.post("/like", (req, res) => {
+  const currCourse = app.get("currCourse");
+  // console.log(currCourse);
+  podcast.updateOne(
+    { _id: currCourse },
+    { likes: currCourse.likes++ },
+    function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(204).send();
       }
     }
   );
