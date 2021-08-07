@@ -66,13 +66,12 @@
         <section class=" py-12 mx-auto md:py-32 flex space-x-4">
             <div class="flex mx-auto space-x-4">
                 <form action="/listenprev" method="POST">
-                    <button type="submit" class="text-xl text-white border-2 px-12 py-4  rounded-full anton"
-                        id="prevbtn">
+                    <button type="submit" class="" id="prevbtn">
                         Previous
                     </button>
                 </form>
                 <form action="/listen" method="POST">
-                    <button type="submit" class="text-xl border w-40 py-4 rounded-full anton" id="nextbtn">
+                    <button type="submit" class="" id="nextbtn">
                         Next
                     </button>
                 </form>
@@ -92,20 +91,16 @@
             if (courseno.textContent == 1) {
                 slate.classList.add('border-yellow-400')
                 userbox.classList.add('bg-yellow-100')
-                next.classList.add('border-yellow-400')
-                next.classList.add('text-yellow-400')
-                prev.classList.add('bg-yellow-400')
-                prev.classList.add('text-white')
+                next.className = " border-yellow-400 text-xl coloredText border w-40 py-4 rounded-full anton transition hover:bg-yellow-400 hover:text-white delay-50"
+                prev.className = "text-xl text-white border-2  border-yellow-400  px-12 py-4 transition hover:bg-white hover:text-yellow-400  rounded-full anton bg-yellow-400 "
                 for (var i = 0; i < coloredTexts.length; i++) {
                     coloredTexts[i].classList.add('text-yellow-400')
                 }
             } else if (courseno.textContent == 2) {
                 slate.classList.add('border-pink-400')
                 userbox.classList.add('bg-pink-200')
-                next.classList.add('border-pink-600')
-                next.classList.add('text-pink-600')
-                prev.classList.add('bg-pink-600')
-                prev.classList.add('text-white')
+                next.className = " border-pink-600 text-xl coloredText border w-40 py-4 rounded-full anton transition hover:bg-pink-600 hover:text-white delay-50"
+                prev.className = "text-xl text-white border-2  border-pink-600  px-12 py-4 transition hover:bg-white hover:text-pink-600  rounded-full anton bg-pink-600 text-white"
                 for (var i = 0; i < coloredTexts.length; i++) {
                     coloredTexts[i].classList.add('text-pink-600')
                 }
@@ -113,25 +108,42 @@
             } else if (courseno.textContent == 3) {
                 slate.classList.add('border-indigo-400')
                 userbox.classList.add('bg-indigo-200')
-                // next_btn.classList.add('border-indigo-400 text-indigo-600')
+                next.className = " border-indigo-600 text-xl coloredText border w-40 py-4 rounded-full anton transition hover:bg-indigo-600 hover:text-white delay-50"
+                prev.className = "text-xl text-white border-2  border-indigo-600  px-12 py-4 transition hover:bg-white hover:text-indigo-600  rounded-full anton bg-indigo-600 text-white"
+                for (var i = 0; i < coloredTexts.length; i++) {
+                    coloredTexts[i].classList.add('text-indigo-600')
+                }
+
             } else if (courseno.textContent == 4) {
                 slate.classList.add('border-green-400')
                 userbox.classList.add('bg-green-200')
-                next_btn.classList.add('border-green-400 text-green-600')
+                next.className = " border-green-600 text-xl coloredText border w-40 py-4 rounded-full anton transition hover:bg-green-600 hover:text-white delay-50"
+                prev.className = "text-xl text-white border-2  border-green-600  px-12 py-4 transition hover:bg-white hover:text-green-600  rounded-full anton bg-green-600 text-white"
+                for (var i = 0; i < coloredTexts.length; i++) {
+                    coloredTexts[i].classList.add('text-green-600')
+                }
+
             } else if (courseno.textContent == 5) {
                 slate.classList.add('border-blue-400')
                 userbox.classList.add('bg-blue-200')
-                // next_btn.classList.add('border-blue-400 text-blue-600')
+                next.className = " border-blue-600 text-xl coloredText border w-40 py-4 rounded-full anton transition hover:bg-blue-600 hover:text-white delay-50"
+                prev.className = "text-xl text-white border-2  border-blue-600  px-12 py-4 transition hover:bg-white hover:text-blue-600  rounded-full anton bg-blue-600 text-white"
+                for (var i = 0; i < coloredTexts.length; i++) {
+                    coloredTexts[i].classList.add('text-blue-600')
+                }
+
             } else if (courseno.textContent == 6) {
                 slate.classList.add('border-red-400')
                 userbox.classList.add('bg-red-200')
-                next_btn.classList.add('border-red-400 text-red-600')
+                next.className = " border-red-600 text-xl coloredText border w-40 py-4 rounded-full anton transition hover:bg-red-600 hover:text-white delay-50"
+                prev.className = "text-xl text-white border-2  border-red-600  px-12 py-4 transition hover:bg-white hover:text-red-600  rounded-full anton bg-red-600 text-white"
+                for (var i = 0; i < coloredTexts.length; i++) {
+                    coloredTexts[i].classList.add('text-red-600')
+                }
             }
             const likes = document.getElementById('likes');
             likes.addEventListener('click', function () {
-
                 document.getElementById('likebtn').classList.add('fill-current')
-
             })
 
         </script>
