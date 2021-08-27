@@ -30,6 +30,7 @@ const userSchema = new mongoose.Schema({
   Password: String,
   Course: Number,
   Episode: Number,
+  favs: [{ courseNo: Number, EpNo: Number }],
 });
 
 app.get("/", (req, res) => {
@@ -137,6 +138,7 @@ app.post("/listenprev", (req, res) => {
 
 app.post("/like", (req, res) => {
   const currCourse = app.get("currCourse");
+  const favUser = app.get("user");
   // console.log(currCourse);
   podcast.updateOne(
     { _id: currCourse },
@@ -149,6 +151,30 @@ app.post("/like", (req, res) => {
       }
     }
   );
+  var fav = { courseNo: favUser.Course, EpNo: favUser.Episode };
+  // console.log(fav);
+  favUser.favs.forEach((element) => {
+    if (element.EpNo != fav.EpNo) {
+      User.updateOne(
+        { _id: favUser },
+        { $push: { favs: fav } },
+        function (err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("success");
+          }
+        }
+      );
+    } else {
+      res.send("already liked");
+    }
+  });
+});
+
+app.post("/favourites", (req, res) => {
+  const currentUser = app.get("user");
+  res.send(currentUser.favs);
 });
 
 app.post("/register", (req, res) => {

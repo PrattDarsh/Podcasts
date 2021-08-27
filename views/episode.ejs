@@ -14,9 +14,26 @@
 
 <body>
     <div id="container" class="border-8 border-b-0">
-        <p id="userbox" class="py-4 text-2xl font-semibold text-center coloredText">Hello <%= user %>.
-        </p>
-        <section class="max-w-6xl py-12 mx-auto md:py-32">
+        <div class="py-8" id="userbox">
+            <div class="flex items-center justify-between max-w-6xl px-6 mx-auto text-2xl coloredText">
+                <div class="">
+                    <p class="font-semibold ">Hello <span class="italic font-bold">
+                            <%= user %>.
+                        </span>
+                    </p>
+                </div>
+                <div class="">
+                    <form type="submit" method="POST" action="/favourites">
+                        <button id="favBtn">Favourites</button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <section class="max-w-6xl py-12 mx-auto">
             <div class="md:flex">
                 <div class="p-6 md:pt-12">
                     <img src="<%=image%>" alt="">
@@ -32,7 +49,7 @@
                     <div class="md:relative">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="hidden w-32 h-32 md:absolute -right-2 -top-12 opacity-20 md:block"
+                            class="hidden w-32 h-32 fill-current md:absolute -right-2 -top-12 opacity-40 md:block coloredText"
                             viewBox="0 0 24 24">
                             <path
                                 d="M18.722 17.289c.841-1.39 1.278-2.942 1.278-4.289v-2h-4v-6h6v5.391c0 2.936-1.176 5.333-3.278 6.898zm-13.993-.011c.836-1.386 1.271-2.934 1.271-4.278v-2h-4v-6h6v5.391c0 2.93-1.184 5.322-3.271 6.887zm-3.729 3.722c5.252-1.039 8.983-4.905 8.983-10.609v-7.391h-9.983v10h4c0 2.211-1.562 4.932-3.995 5.849l.995 2.151zm14 0c5.252-1.039 9-4.905 9-10.609v-7.391h-9.983v10h3.983c0 2.211-1.563 4.932-3.996 5.849l.996 2.151z" />
@@ -63,7 +80,7 @@
             </div>
 
         </section>
-        <section class=" py-12 mx-auto md:py-32 flex space-x-4">
+        <section class="flex py-12 mx-auto space-x-4 ">
             <div class="flex mx-auto space-x-4">
                 <form action="/listenprev" method="POST">
                     <button type="submit" class="" id="prevbtn">
@@ -87,20 +104,23 @@
             var coloredTexts = document.getElementsByClassName('coloredText')
             var next = document.getElementById("nextbtn")
             var prev = document.getElementById("prevbtn")
+            var favBtn = document.getElementById("favBtn")
 
             if (courseno.textContent == 1) {
                 slate.classList.add('border-yellow-400')
                 userbox.classList.add('bg-yellow-100')
-                next.className = " border-yellow-400 text-xl coloredText border w-40 py-4 rounded-full anton transition hover:bg-yellow-400 hover:text-white delay-50"
-                prev.className = "text-xl text-white border-2  border-yellow-400  px-12 py-4 transition hover:bg-white hover:text-yellow-400  rounded-full anton bg-yellow-400 "
+                next.className = " border-yellow-400 text-xl coloredText border w-40 py-4 rounded-lg anton transition hover:bg-yellow-400 hover:text-white delay-50"
+                prev.className = "text-xl text-white border-2  border-yellow-400  px-12 py-4 transition hover:bg-white hover:text-yellow-400  rounded-lg anton bg-yellow-400 "
+                favBtn.className = "font-semibold border-yellow-400 text-xl coloredText border w-40 py-4 rounded-lg  transition hover:bg-yellow-400 hover:text-white delay-50"
                 for (var i = 0; i < coloredTexts.length; i++) {
                     coloredTexts[i].classList.add('text-yellow-400')
                 }
             } else if (courseno.textContent == 2) {
                 slate.classList.add('border-pink-400')
                 userbox.classList.add('bg-pink-200')
-                next.className = " border-pink-600 text-xl coloredText border w-40 py-4 rounded-full anton transition hover:bg-pink-600 hover:text-white delay-50"
-                prev.className = "text-xl text-white border-2  border-pink-600  px-12 py-4 transition hover:bg-white hover:text-pink-600  rounded-full anton bg-pink-600 text-white"
+                next.className = " border-pink-600 text-xl coloredText border w-40 py-4 rounded-lg  anton transition hover:bg-pink-600 hover:text-white delay-50"
+                prev.className = "text-xl text-white border-2  border-pink-600 rounded-lg  px-12 py-4 transition hover:bg-white hover:text-pink-600  anton bg-pink-600 text-white"
+                favBtn.className = "font-semibold border-pink-400 text-xl coloredText border w-40 py-4 rounded-lg  transition hover:bg-pink-400 hover:text-white delay-50"
                 for (var i = 0; i < coloredTexts.length; i++) {
                     coloredTexts[i].classList.add('text-pink-600')
                 }
@@ -108,8 +128,9 @@
             } else if (courseno.textContent == 3) {
                 slate.classList.add('border-indigo-400')
                 userbox.classList.add('bg-indigo-200')
-                next.className = " border-indigo-600 text-xl coloredText border w-40 py-4 rounded-full anton transition hover:bg-indigo-600 hover:text-white delay-50"
-                prev.className = "text-xl text-white border-2  border-indigo-600  px-12 py-4 transition hover:bg-white hover:text-indigo-600  rounded-full anton bg-indigo-600 text-white"
+                next.className = " border-indigo-600 text-xl coloredText border w-40 py-4 rounded-lg anton transition hover:bg-indigo-600 hover:text-white delay-50"
+                prev.className = "text-xl text-white border-2  border-indigo-600  px-12 py-4 transition hover:bg-white hover:text-indigo-600  rounded-lg anton bg-indigo-600 text-white"
+                favBtn.className = "font-semibold border-indigo-400 text-xl coloredText border w-40 py-4 rounded-lg  transition hover:bg-indigo-400 hover:text-white delay-50"
                 for (var i = 0; i < coloredTexts.length; i++) {
                     coloredTexts[i].classList.add('text-indigo-600')
                 }
@@ -117,8 +138,9 @@
             } else if (courseno.textContent == 4) {
                 slate.classList.add('border-green-400')
                 userbox.classList.add('bg-green-200')
-                next.className = " border-green-600 text-xl coloredText border w-40 py-4 rounded-full anton transition hover:bg-green-600 hover:text-white delay-50"
-                prev.className = "text-xl text-white border-2  border-green-600  px-12 py-4 transition hover:bg-white hover:text-green-600  rounded-full anton bg-green-600 text-white"
+                next.className = " border-green-600 text-xl coloredText border w-40 py-4 rounded-lg anton transition hover:bg-green-600 hover:text-white delay-50"
+                prev.className = "text-xl text-white border-2  border-green-600  px-12 py-4 transition hover:bg-white hover:text-green-600  rounded-lg anton bg-green-600 text-white"
+                favBtn.className = "font-semibold border-green-400 text-xl coloredText border w-40 py-4 rounded-lg  transition hover:bg-green-400 hover:text-white delay-50"
                 for (var i = 0; i < coloredTexts.length; i++) {
                     coloredTexts[i].classList.add('text-green-600')
                 }
@@ -126,8 +148,9 @@
             } else if (courseno.textContent == 5) {
                 slate.classList.add('border-blue-400')
                 userbox.classList.add('bg-blue-200')
-                next.className = " border-blue-600 text-xl coloredText border w-40 py-4 rounded-full anton transition hover:bg-blue-600 hover:text-white delay-50"
-                prev.className = "text-xl text-white border-2  border-blue-600  px-12 py-4 transition hover:bg-white hover:text-blue-600  rounded-full anton bg-blue-600 text-white"
+                next.className = " border-blue-600 text-xl coloredText border w-40 py-4 rounded-lg anton transition hover:bg-blue-600 hover:text-white delay-50"
+                prev.className = "text-xl text-white border-2  border-blue-600  px-12 py-4 transition hover:bg-white hover:text-blue-600  rounded-lg anton bg-blue-600 text-white"
+                favBtn.className = "font-semibold border-blue-400 text-xl coloredText border w-40 py-4 rounded-lg  transition hover:bg-blue-400 hover:text-white delay-50"
                 for (var i = 0; i < coloredTexts.length; i++) {
                     coloredTexts[i].classList.add('text-blue-600')
                 }
@@ -135,8 +158,9 @@
             } else if (courseno.textContent == 6) {
                 slate.classList.add('border-red-400')
                 userbox.classList.add('bg-red-200')
-                next.className = " border-red-600 text-xl coloredText border w-40 py-4 rounded-full anton transition hover:bg-red-600 hover:text-white delay-50"
-                prev.className = "text-xl text-white border-2  border-red-600  px-12 py-4 transition hover:bg-white hover:text-red-600  rounded-full anton bg-red-600 text-white"
+                next.className = " border-red-600 text-xl coloredText border w-40 py-4 rounded-lg anton transition hover:bg-red-600 hover:text-white delay-50"
+                prev.className = "text-xl text-white border-2  border-red-600  px-12 py-4 transition hover:bg-white hover:text-red-600  rounded-lg anton bg-red-600 text-white"
+                favBtn.className = "font-semibold border-red-400 text-xl coloredText border w-40 py-4 rounded-lg  transition hover:bg-red-400 hover:text-white delay-50"
                 for (var i = 0; i < coloredTexts.length; i++) {
                     coloredTexts[i].classList.add('text-red-600')
                 }
