@@ -30,7 +30,16 @@ const userSchema = new mongoose.Schema({
   Password: String,
   Course: Number,
   Episode: Number,
-  favs: [{ courseNo: Number, EpNo: Number }],
+  favs: [
+    {
+      courseNo: Number,
+      EpNo: Number,
+      epTitle: String,
+      epDesc: String,
+      epImg: String,
+      epLink: String,
+    },
+  ],
 });
 
 app.get("/", (req, res) => {
@@ -151,30 +160,50 @@ app.post("/like", (req, res) => {
       }
     }
   );
-  var fav = { courseNo: favUser.Course, EpNo: favUser.Episode };
+  var fav = {
+    courseNo: favUser.Course,
+    EpNo: favUser.Episode,
+    epTitle: currCourse.Title,
+    epDesc: currCourse.Description,
+    epImg: currCourse.image,
+    epLink: currCourse.audio,
+  };
   // console.log(fav);
-  favUser.favs.forEach((element) => {
-    if (element.EpNo != fav.EpNo) {
-      User.updateOne(
-        { _id: favUser },
-        { $push: { favs: fav } },
-        function (err) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("success");
+  if (favUser.favs.length == 0) {
+    User.updateOne({ _id: favUser }, { $push: { favs: fav } }, function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("success");
+      }
+    });
+  } else {
+    favUser.favs.forEach((element) => {
+      if (element.EpNo != fav.EpNo) {
+        User.updateOne(
+          { _id: favUser },
+          { $push: { favs: fav } },
+          function (err) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log("success");
+            }
           }
-        }
-      );
-    } else {
-      res.send("already liked");
-    }
-  });
+        );
+      } else {
+        res.send("already liked");
+      }
+    });
+  }
 });
 
 app.post("/favourites", (req, res) => {
   const currentUser = app.get("user");
-  res.send(currentUser.favs);
+  // res.send(currentUser.favs);
+  res.render("favourites", {
+    test: currentUser.favs,
+  });
 });
 
 app.post("/register", (req, res) => {
