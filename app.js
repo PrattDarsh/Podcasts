@@ -116,17 +116,23 @@ app.get("/listen", (req, res) => {
 app.post("/listen", (req, res) => {
   const curruser = app.get("user");
   // console.log(curruser.Course++);
-  User.updateOne(
-    { _id: curruser },
-    { Episode: curruser.Episode++ },
-    function (err) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.status(302).redirect("/listen");
+  if (curruser.Episode == 5) {
+    res.render("endCourse", {
+      course: curruser.Course,
+    });
+  } else {
+    User.updateOne(
+      { _id: curruser },
+      { Episode: curruser.Episode++ },
+      function (err) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.redirect("/listen");
+        }
       }
-    }
-  );
+    );
+  }
 });
 
 app.post("/listenprev", (req, res) => {
@@ -222,6 +228,27 @@ app.post("/register", (req, res) => {
       res.send("success");
     }
   });
+});
+
+app.post("/nextCourse", (req, res) => {
+  const student = app.get("user");
+  // res.status(302).redirect("/listen");
+
+  student.Course = student.Course + 1;
+  student.Episode = 1;
+
+  User.updateOne(
+    { _id: student },
+    { Course: student.Course },
+    { Episode: student.Episode },
+    function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(302).redirect("/listen");
+      }
+    }
+  );
 });
 
 app.listen(process.env.PORT || 3000, (req, res) => {

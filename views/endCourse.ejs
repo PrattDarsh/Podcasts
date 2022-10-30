@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Course Completed</title>
+</head>
+
+<body class="border-8 border-yellow-400">
+    <section class="max-w-6xl px-4 py-16 mx-auto md:py-32">
+        <div class="space-x-12 space-y-4 lg:flex">
+            <div class="max-w-xl">
+                <h1 class="mb-8 text-4xl tracking-widest uppercase headings md:text-7xl">Congratulations!
+                    <span class="text-white headings">You have completed course
+                        <%=course%>
+                    </span>
+                </h1>
+                <div class="w-56 h-2 mb-4 bg-yellow-400"></div>
+                <form action="/nextCourse" method="POST">
+                    <button type="submit"
+                        class="px-12 py-4 mt-4 text-lg font-bold text-white transition bg-black rounded-lg hover:bg-yellow-400 delay-50 hover:text-black">
+                        Next Chapter
+                    </button>
+                </form>
+            </div>
+            <div class=""><img src="images/success.svg" alt=""></div>
+        </div>
+
+    </section>
+    <section class="max-w-6xl px-4 py-16 mx-auto md:py-32">
+        <h2 class="mb-8 text-4xl tracking-widest text-right uppercase headings md:text-7xl">Listen again</h2>
+    </section>
+</body>
+
+</html>
