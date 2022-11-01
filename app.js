@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
+var port = process.env.PORT || 3000;
 const app = express();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -251,6 +251,6 @@ app.post("/nextCourse", (req, res) => {
   );
 });
 
-app.listen(process.env.PORT || 3000, (req, res) => {
+app.listen(port, (req, res) => {
   console.log("Im on");
 });
